@@ -2,6 +2,7 @@ import TabButton from "./TabButton.jsx";
 import Section from './Section';
 import { EXAMPLES } from '../data.js';
 import { useState } from 'react';
+import Tabs from "./Tabs.jsx";
 
 export default function Examples () {
   function clickHandler(buttonClicked) {
@@ -24,36 +25,17 @@ export default function Examples () {
   }
   return (
     <Section title="Examples" id="examples">
-      <menu>
-        {/* <TabButton onSelect={() => clickHandler ('components')}>Components</TabButton> 
-        Esto era para mostrar que se pod[ia pasar un metodo a un componente. */}
-        <TabButton onClick={() => clickHandler ('components')}>Components</TabButton>
-        <TabButton onClick={() => clickHandler ('jsx')}>JSX</TabButton>
-        <TabButton onClick={() => clickHandler ('props')}>Props</TabButton>
-        <TabButton onClick={() => clickHandler ('state')}>State</TabButton>
-      </menu>
-      {/* Esto es lo mismo que lo de abajo
-        {!selectedTopic ? <p>Select a topic.</p> : 
-      (<div id="tab-content">
-        <h3>{EXAMPLES[selectedTopic].title}</h3>
-        <p>{EXAMPLES[selectedTopic].description}</p>
-        <pre>
-          <code>{EXAMPLES[selectedTopic].code}</code>
-        </pre>
-      </div>)
-      } */}
-      {/* Y esto es igual a lo de abajo también
-      {!selectedTopic && <p>Select a topic.</p>}
-      {selectedTopic && (
-        <div id="tab-content">
-          <h3>{EXAMPLES[selectedTopic].title}</h3>
-          <p>{EXAMPLES[selectedTopic].description}</p>
-          <pre>
-            <code>{EXAMPLES[selectedTopic].code}</code>
-          </pre>
-        </div>
-      )} */}
-      {tabContent}
+      <Tabs ButtonsContainer
+        buttons={
+        <>
+          <TabButton onClick={() => clickHandler ('components')}>Components</TabButton>
+          <TabButton onClick={() => clickHandler ('jsx')}>JSX</TabButton>
+          <TabButton onClick={() => clickHandler ('props')}>Props</TabButton>
+          <TabButton onClick={() => clickHandler ('state')}>State</TabButton>
+        </>
+      }>
+        {tabContent}
+      </Tabs>
     </Section>
   )
 }
